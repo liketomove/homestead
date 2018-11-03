@@ -159,6 +159,19 @@ function serve-symfony4() {
     fi
 }
 
+function serve-yii() {
+    if [[ "$1" && "$2" ]]
+    then
+        sudo bash /vagrant/vendor/laravel/homestead/scripts/create-certificate.sh "$1"
+        sudo dos2unix /vagrant/vendor/laravel/homestead/scripts/serve-yii.sh
+        sudo bash /vagrant/vendor/laravel/homestead/scripts/serve-yii.sh "$1" "$2" 80 443 "${3:-7.1}"
+    else
+        echo "Error: missing required parameters."
+        echo "Usage: "
+        echo "  serve-yii domain path"
+    fi
+}
+
 function serve-pimcore() {
     if [[ "$1" && "$2" ]]
     then
